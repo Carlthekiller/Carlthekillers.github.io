@@ -1,39 +1,175 @@
 <!DOCTYPE html>
-<head><title>Group 5 dictionary</title></head>
+<html>
+<head>
+	<title>English</title>
+	<style>
+
+ body {
+  background-color: #82E0AA;
+}
+
+		img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+        .word:hover {
+			border: none;
+  color: white;
+  background-color: green	;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+		}
+
+        .definition:hover {
+         font-size: 1.5em;
+		}
+
+		.word {
+
+			border: 15%;
+			background-color: white;
+			width: 10%;
+			font-weight: bold;
+			font-size: 1.2em;
+			cursor: pointer;
+		        
+		}
+		.definition {
+			display: none;
+			margin-left: 20px;
+			cursor: pointer;
+		}
+        .synonymsTitle {
+            display: none;
+            margin-left: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .synonymsList {
+            display: none;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/*change color hover */
+li a:hover {
+  background-color: #0b7610;
+}
+
+ul {
+  list-style-type: none;
+  margin:100;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 5px rgba(66, 104, 58, 0.??
+}
+	</style>
+	<script>
+		function toggleDefinition(event) {
+			const definition = event.target.nextElementSibling;
+            const synonymsTitle = definition.nextElementSibling;
+			if (definition.style.display === 'none') {
+				  definition.style.display = 'block';
+          synonymsTitle.style.display = 'block';
+			} else {
+				  definition.style.display = 'none';
+          synonymsTitle.style.display = 'none';
+			}
+		}
+        
+        function toggleSynonyms(event) {
+            const synonymsList = event.target.nextElementSibling;
+            if (synonymsList.style.display === 'none') {
+                synonymsList.style.display = 'block';
+            } else {
+                synonymsList.style.display = 'none';
+            }
+        }
+
+		
+		function displayWord(word, definition, synonyms) {
+			const wordDiv = document.createElement('div');
+			wordDiv.className = 'word';
+			wordDiv.textContent = word;
+			wordDiv.addEventListener('click', toggleDefinition);
+			
+			const definitionDiv = document.createElement('div');
+			definitionDiv.className = 'definition';
+			definitionDiv.textContent = definition;
+            
+            const synonymsTitleDiv = document.createElement('div');
+            synonymsTitleDiv.className = 'synonymsTitle';
+            synonymsTitleDiv.textContent = 'Synonyms';
+            synonymsTitleDiv.addEventListener('click', toggleSynonyms);
+            
+            const synonymsListDiv = document.createElement('div');
+            synonymsListDiv.className = 'synonymsList';
+            synonymsListDiv.textContent = synonyms;
+			
+			document.body.appendChild(wordDiv);
+			document.body.appendChild(definitionDiv);
+            document.body.appendChild(synonymsTitleDiv);
+            document.body.appendChild(synonymsListDiv);
+
+		}
+	</script>
+</head>
 <body>
-<header>
- <h1><a>ENGLISH</a></h1>
-</header>
+	<h1></h1>
+<ul>
+		<li><a href="Dictionary.html">Dictionary</a></li>
+		<li><a href="Mathematics.html">Mathematics</a></li>
+		<li><a href="Science Research.html">Science Research</a></li> 
+		<li><a href="Environmentalscience.html">Environmental science</a></li>
+	  </ul>
 
+	
 
-<header>
-<p>This is an example text</p>
-<style>
- .dropdown-content {
-   display: none:
-   posistion: absolute;
-   z-index: 1;
-  }
-  
-
-  .dropdown-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-   }
-
-
-  .dropdown-button {
-    top: -100%;
-   }
-
-  .dropdown-button:focus + .dropdown-content {
-    display: block;
-   }
-</style>
-</header>
-</body/
+	<button class=".word">></button>
+	
+	<script>
+		displayWord('1. Median (noun)', 'It is the middle value of the data set. ','central, middle');
+		displayWord('2. Mode (noun)', 'It represents the frequently of occuring value in the data set.',' most frequently');
+		displayWord('3. Mean (adverb)', 'It represents the average of the value of the data set.','average');
+		displayWord('4. Unethical(adjective)', 'not morally correct.','wrong, unfair,  illegal, improper, unfair, unprofessional, and unscrupulous');
+		displayWord('5. Bioprospecting (adverb, adjective)', 'It is the exploration of biodiversity for new biological resources of social and economic value.','biodiversity prospecting');
+		displayWord('6. Landfills (noun)', ' These are sites designated for dumping rubbish, garbage, or other sorts of solid wastes.','dump, dumpsite, junkheap, junkpile, junkyard, and landfill');
+		displayWord('7. Incineration (verb)', ' It is the act of burning something completely.','cremate, burn');
+		displayWord('8. Euthanasia (verb, adjective)', ' It is the act of killing someone painlessly.','assisted suicide, mercy killing');
+		displayWord('9. Implement (noun)', 'put (a decision, plan, agreement, etc.) into effect.','exucute, perform, apply, carry out');
+		displayWord('10.Veterinary (Adjective)', 'a doctor for animals.','doctor, physician, medico');
+                displayWord('11. Interval (verb) ', 'Time between events or states : pause. a three-month interval. the interval between elections. : a space   between things.','distance, break, hiatus, intermission');
+		displayWord('12.Biosafety (noun)', 'The application of knowledge, techniques and equipment to prevent personal, laboratory and environmental exposure to potentially infectious agents or biohazards.','biorisk');
+	</script>
+	<button class=".word">></button>
+</body>
 </html>
