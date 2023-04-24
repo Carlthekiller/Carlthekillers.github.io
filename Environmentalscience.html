@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Environment Science</title>
+	<style>
+ body {
+  background-color: #82E0AA;
+}
+
+		img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+        .definition:hover {
+         font-size: 1.5em;
+		}
+
+		.word {
+			border: 15%;
+                font-color: white;
+			background-color: white;
+			width: 10%;
+			font-weight: bold;
+			font-size: 1.2em;
+			cursor: pointer;
+		        
+		}
+		.definition {
+			display: none;
+			margin-left: 20px;
+			cursor: pointer;
+		}
+        .synonymsTitle {
+            display: none;
+            margin-left: 20px;
+            font-weight: bold;
++            cursor: pointer;
+        }
+        .synonymsList {
+            display: none;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/*change color hover */
+li a:hover {
+  background-color: #0b7610;
+}
+
+ul {
+  list-style-type: none;
+  margin:100;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 5px rgba(66, 104, 58, 0.8)
+}
+	</style>
+	<script>
+		function toggleDefinition(event) {
+			const definition = event.target.nextElementSibling;
+            const synonymsTitle = definition.nextElementSibling;
+			if (definition.style.display === 'none') {
+				  definition.style.display = 'block';
+          synonymsTitle.style.display = 'block';
+			} else {
+				  definition.style.display = 'none';
+          synonymsTitle.style.display = 'none';
+			}
+		}
+        
+        function toggleSynonyms(event) {
+            const synonymsList = event.target.nextElementSibling;
+            if (synonymsList.style.display === 'none') {
+                synonymsList.style.display = 'block';
+            } else {
+                synonymsList.style.display = 'none';
+            }
+        }
+
+		
+		function displayWord(word, definition, synonyms) {
+			const wordDiv = document.createElement('div');
+			wordDiv.className = 'word';
+			wordDiv.textContent = word;
+			wordDiv.addEventListener('click', toggleDefinition);
+			
+			const definitionDiv = document.createElement('div');
+			definitionDiv.className = 'definition';
+			definitionDiv.textContent = definition;
+            
+            const synonymsTitleDiv = document.createElement('div');
+            synonymsTitleDiv.className = 'synonymsTitle';
+            synonymsTitleDiv.textContent = 'Synonyms';
+            synonymsTitleDiv.addEventListener('click', toggleSynonyms);
+            
+            const synonymsListDiv = document.createElement('div');
+            synonymsListDiv.className = 'synonymsList';
+            synonymsListDiv.textContent = synonyms;
+			
+			document.body.appendChild(wordDiv);
+			document.body.appendChild(definitionDiv);
+            document.body.appendChild(synonymsTitleDiv);
+            document.body.appendChild(synonymsListDiv);
+
+		}
+	</script>
+</head>
+<body>
+	<h1></h1>
+<ul>
+		<li><a href="Dictionary-Copy.html">Dictionary</a></li>
+		<li><a href="Mathematics.html">Mathematics</a></li>
+		<li><a href="Science Research.html">Science Research</a></li>
+		<li><a href="Group-5.html">English</a></li>
+	  </ul>
+
+	<img src="pencil.jpg" alt="pencil" style="width:150px">
+	
+	<script>
+		displayWord('1. Cycle (noun)', 'a series of events that regularly repeat in the same order; (verb): to circulate or pass through a process repeatedly.', 'rotation, sequence, circle');
+		displayWord('2. Conviction (noun)', 'Firm belief on something that an individual is convinced of.', 'view, thought');
+		displayWord('3. Extemporaneously (adverb)', ' With little or no advance preparation.', 'impromptu, improvised');
+		displayWord('4. Impromptu (adjective)', 'Made or done without previous preparation.', 'unrehearsed, unprepared');
+		displayWord('5. Verbatim (adverb, adjective)', 'Adverb: In exactly the same words as were used originally. Adjective: Copied, quoted, or translated in exactly the same words as were used originally.', 'exactly, in every  detail');
+		displayWord('6. Manuscript (noun)', 'The word-for-word iteration of a written message.', 'text, script');
+		displayWord('7. Auxiliary (verb)', 'A helping element, typically a verb, that adds meaning to the basic meaning of the main verb in a clause.', 'None');
+		displayWord('8. Provoking (verb, adjective)', 'Giving rise to the specified reaction or emotion.', 'cause, promote');
+		displayWord('9. Stance (noun)', 'The position or bearing of the body while standing.', 'posture, pose');
+		displayWord('10. Multi-sensorial (Adjective)', 'The use of several senses.', 'involving more than one of the senses');
+		displayWord('11. Recount (verb)', 'To retell a series of events.', 'tell, narrate');
+		displayWord('12. Hypertext (noun)', 'Text which contains links to other texts.', 'None');
+	</script>
+	
+</body>
+</html>
