@@ -1,8 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>English</title>
+	<title>Science Research</title>
 	<style>
+		.text:hover {
+            border-radius: 10px;
+    color: white;
+    background-color: green	;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2em;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;          
+      } 	
+		
+		.text {
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+            line-height: 5em;
+            padding: 1px;
+			border: 15%;
+			background-color: greenyellow;
+			width: 30%;
+			font-weight: bold;
+			font-size: 2em;
+			cursor: pointer;
+}
+		
+		 .antonymsTitle {
+            display: none;
+            margin-left: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .antonymsList {
+            display: none;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+        .pronunciation {
+
+            border-radius: 10px;
+            display: none;
+            margin-left: 20px;
+            cursor: pointer;
+        }
 
  body {
   background-color: #82E0AA;
@@ -17,17 +63,18 @@
 
         .word:hover {
 			border: none;
-  color: white;
-  background-color: green	;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-		}
+   border-radius: 10px;
+    color: white;
+    background-color: green	;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2em;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;          
+      }
 
         .definition:hover {
          font-size: 1.5em;
@@ -35,11 +82,14 @@
 
 		.word {
 
+			border-radius: 5px;
+            line-height: 5em;
+            padding: 1px;
 			border: 15%;
 			background-color: white;
-			width: 10%;
+			width: 30%;
 			font-weight: bold;
-			font-size: 1.2em;
+			font-size: 2em;
 			cursor: pointer;
 		        
 		}
@@ -95,52 +145,75 @@ ul {
 	</style>
 	<script>
 		function toggleDefinition(event) {
-			const definition = event.target.nextElementSibling;
-            const synonymsTitle = definition.nextElementSibling;
-			if (definition.style.display === 'none') {
-				  definition.style.display = 'block';
-          synonymsTitle.style.display = 'block';
-			} else {
-				  definition.style.display = 'none';
-          synonymsTitle.style.display = 'none';
-			}
-		}
-        
-        function toggleSynonyms(event) {
-            const synonymsList = event.target.nextElementSibling;
-            if (synonymsList.style.display === 'none') {
-                synonymsList.style.display = 'block';
-            } else {
-                synonymsList.style.display = 'none';
-            }
-        }
+      const definition = event.target.nextElementSibling;
+      const pronunciation = definition.nextElementSibling;
+      const synonymsTitle = pronunciation.nextElementSibling;
+      const synonymsList = synonymsTitle.nextElementSibling;
+      const antonymsTitle = synonymsList.nextElementSibling;
+      const antonymsList = antonymsTitle.nextElementSibling;
+  
+      if (event.target.className === 'word') {
+          definition.style.display = definition.style.display === 'none' ? 'block' : 'none';
+          pronunciation.style.display = pronunciation.style.display === 'none' ? 'block' : 'none';
+          synonymsTitle.style.display = synonymsTitle.style.display === 'none' ? 'block' : 'none';
+          antonymsTitle.style.display = antonymsTitle.style.display === 'none' ? 'block' : 'none';
+      }
+  }
 
-		
-		function displayWord(word, definition, synonyms) {
-			const wordDiv = document.createElement('div');
-			wordDiv.className = 'word';
-			wordDiv.textContent = word;
-			wordDiv.addEventListener('click', toggleDefinition);
-			
-			const definitionDiv = document.createElement('div');
-			definitionDiv.className = 'definition';
-			definitionDiv.textContent = definition;
-            
-            const synonymsTitleDiv = document.createElement('div');
-            synonymsTitleDiv.className = 'synonymsTitle';
-            synonymsTitleDiv.textContent = 'Synonyms';
-            synonymsTitleDiv.addEventListener('click', toggleSynonyms);
-            
-            const synonymsListDiv = document.createElement('div');
-            synonymsListDiv.className = 'synonymsList';
-            synonymsListDiv.textContent = synonyms;
-			
-			document.body.appendChild(wordDiv);
-			document.body.appendChild(definitionDiv);
-            document.body.appendChild(synonymsTitleDiv);
-            document.body.appendChild(synonymsListDiv);
+  function toggleSynonyms(event) {
+      const synonymsList = event.target.nextElementSibling;
+      synonymsList.style.display = synonymsList.style.display === 'none' ? 'block' : 'none';
+  }
 
-		}
+  function toggleAntonyms(event) {
+      const antonymsList = event.target.nextElementSibling;
+      antonymsList.style.display = antonymsList.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function displayWord(word, definition, pronunciation, synonyms, antonyms) {
+      const wordDiv = document.createElement('div');
+      wordDiv.className = 'word';
+      wordDiv.textContent = word;
+      wordDiv.addEventListener('click', toggleDefinition);
+
+      const definitionDiv = document.createElement('div');
+      definitionDiv.className = 'definition';
+      definitionDiv.textContent = definition;
+
+      const pronunciationDiv = document.createElement('div');
+      pronunciationDiv.className = 'pronunciation';
+      pronunciationDiv.textContent = 'Pronunciation: ' + pronunciation; // replace 'pronunciation' with actual pronunciation text
+
+      const synonymsTitleDiv = document.createElement('div');
+      synonymsTitleDiv.className = 'synonymsTitle';
+      synonymsTitleDiv.textContent = 'Synonyms';
+      synonymsTitleDiv.addEventListener('click', toggleSynonyms);
+
+
+      const synonymsListDiv = document.createElement('div');
+      synonymsListDiv.className = 'synonymsList';
+      synonymsListDiv.style.display = 'none'; // initially set to 'none'
+      synonymsListDiv.textContent = synonyms;    
+
+
+      const antonymsTitleDiv = document.createElement('div');
+      antonymsTitleDiv.className = 'antonymsTitle';
+      antonymsTitleDiv.textContent = 'Antonyms';
+      antonymsTitleDiv.addEventListener('click', toggleAntonyms);
+
+      const antonymsListDiv = document.createElement('div');
+      antonymsListDiv.className = 'antonymsList';
+      antonymsListDiv.style.display = 'none'; // initially set to 'none'
+      antonymsListDiv.textContent = antonyms;
+
+      document.body.appendChild(wordDiv);
+      document.body.appendChild(definitionDiv);
+      document.body.appendChild(pronunciationDiv);
+      document.body.appendChild(synonymsTitleDiv);
+      document.body.appendChild(synonymsListDiv);
+      document.body.appendChild(antonymsTitleDiv);
+      document.body.appendChild(antonymsListDiv);
+  }
 	</script>
 </head>
 <body>
@@ -156,18 +229,21 @@ ul {
 
 
 	<script>
-		displayWord('1. Median (noun)', 'It is the middle value of the data set. ','central, middle');
-		displayWord('2. Mode (noun)', 'It represents the frequently of occuring value in the data set.',' most frequently');
-		displayWord('3. Mean (adverb)', 'It represents the average of the value of the data set.','average');
-		displayWord('4. Unethical(adjective)', 'not morally correct.','wrong, unfair,  illegal, improper, unfair, unprofessional, and unscrupulous');
-		displayWord('5. Bioprospecting (adverb, adjective)', 'It is the exploration of biodiversity for new biological resources of social and economic value.','biodiversity prospecting');
-		displayWord('6. Landfills (noun)', ' These are sites designated for dumping rubbish, garbage, or other sorts of solid wastes.','dump, dumpsite, junkheap, junkpile, junkyard, and landfill');
-		displayWord('7. Incineration (verb)', ' It is the act of burning something completely.','cremate, burn');
-		displayWord('8. Euthanasia (verb, adjective)', ' It is the act of killing someone painlessly.','assisted suicide, mercy killing');
-		displayWord('9. Implement (noun)', 'put (a decision, plan, agreement, etc.) into effect.','exucute, perform, apply, carry out');
-		displayWord('10.Veterinary (Adjective)', 'a doctor for animals.','doctor, physician, medico');
-                displayWord('11. Interval (verb) ', 'Time between events or states : pause. a three-month interval. the interval between elections. : a space   between things.','distance, break, hiatus, intermission');
-		displayWord('12.Biosafety (noun)', 'The application of knowledge, techniques and equipment to prevent personal, laboratory and environmental exposure to potentially infectious agents or biohazards.','biorisk');
+		displayWord('1. Median', 'It is the middle value of the data set', 'mee·dee·uhn', 'central, middle', 'N/A');
+		displayWord('2. Mode', 'It represents the frequently of occuring value in the data set.', 'mowd', 'most frequently', 'N/A');
+		displayWord('3. Mean', ' It represents the average of the value of the data set.', ' meen', 'average','N/A');
+		displayWord('4. Unethical', 'not morally correct.', 'uh·neh·thi·kl', 'wrong, unfair,  illegal, improper, unfair, unprofessional, and unscrupulous', 'ethical, acceptable');
+		displayWord('5. bioprospecting', 'It is the exploration of biodiversity for new biological resources of social and economic value.', 'bī-ō-prä-spek-ting','biodiversity prospecting', 'N/A');
+		displayWord('6. Landfills', 'These are sites designated for dumping rubbish, garbage, or other sorts of solid wastes.', 'land·filz', 'dump, dumpsite, junkheap, junkpile, junkyard, and landfill', 'N/A');
+		displayWord('7. Incineration', 'It is the act of burning something completely.', 'uhn·si·nr·ay·shn', 'cremate, burn', 'extinguish blot out blow out');
+		displayWord('8. Euthanasia', 'It is the act of killing someone painlessly.', 'yoo·thuh·nay·zhuh', 'assisted suicide, mercy killing', 'N/A');
+		displayWord('9. Implement', 'Put (a decision, plan, agreement, etc.) into effect.', 'im·pli·muhnt','exucute, perform, apply, carry out', 'cancel, abandon, abort');
+		displayWord('10. Veterinary', 'A doctor for animals.', 'veh·tr·uh·neh·ree', 'doctor, physician, medico', 'N/A');
+		displayWord('11. Interval', 'Time between events or states : pause. a three-month interval. the interval between elections. : a space between things.', 'in·tr·vl','distance, break, hiatus, intermission', 'continuation, continuance, uninterruptedness');
+		displayWord('12. Biosafety', 'The application of knowledge, techniques and equipment to prevent personal, laboratory and environmental exposure to potentially infectious agents or biohazards.',' bai·ow·sayf·tee', 'safety', 'biorisk');
+        displayWord('13. Disposal ', 'The act of getting rid of something; the process of throwing something away or dealing with it.','duh-spoh-zuh l', 'deletion, discarding, removal', 'conservation, preservation');
+        displayWord('14. Range', 'The extent or scope of something; the difference between the highest and lowest value or number in a set of data.','reynj', ' scope, variety, gamut', 'limited, narrow');
+        displayWord('15. Autoclave', ' A device used to sterilize medical or laboratory instruments using high heat and pressure.','aw-tuh-kleyv', ' sterilizer, sterilization equipment, steam chamber', 'contamination, infection');
 	</script>
 	<button class=".word">></button>
 </body>
