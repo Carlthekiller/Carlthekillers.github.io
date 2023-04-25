@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Environment Science</title>
+	<title>English</title>
 	<style>
- .word:hover {
-			border: none;
-  color: white;
-  background-color: green	;
-  padding: 16px 32px;
+.text {
+  color: black;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-		}
-
+  border-radius: 5px;
+            line-height: 5em;
+            padding: 1px;
+			border: 15%;
+			background-color: greenyellow;
+			width: 30%;
+			font-weight: bold;
+			font-size: 2em;
+			cursor: pointer;
+}
 
  body {
   background-color: #82E0AA;
@@ -28,19 +27,53 @@
   padding: 5px;
   width: 150px;
 }
+
+
+.text:hover {
+            border-radius: 10px;
+    color: white;
+    background-color: green	;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2em;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;          
+      }
+
+          .word:hover {
+            border-radius: 10px;
+    color: white;
+    background-color: green	;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2em;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;          
+      }
+
         .definition:hover {
          font-size: 1.5em;
 		}
 
 		.word {
+      border-radius: 5px;
+            line-height: 5em;
+            padding: 1px;
 			border: 15%;
-             
 			background-color: white;
-			width: 10%;
+			width: 30%;
 			font-weight: bold;
-			font-size: 1.2em;
+			font-size: 2em;
 			cursor: pointer;
 		        
+		    
+    
 		}
 		.definition {
 			display: none;
@@ -56,6 +89,24 @@
         .synonymsList {
             display: none;
             margin-left: 40px;
+            cursor: pointer;
+        }
+        .antonymsTitle {
+            display: none;
+            margin-left: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .antonymsList {
+            display: none;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+        .pronunciation {
+
+            border-radius: 10px;
+            display: none;
+            margin-left: 20px;
             cursor: pointer;
         }
 
@@ -92,79 +143,116 @@ ul {
   box-shadow: 0 0 5px 5px rgba(66, 104, 58, 0.8)
 }
 	</style>
-	<script>
-		function toggleDefinition(event) {
-			const definition = event.target.nextElementSibling;
-            const synonymsTitle = definition.nextElementSibling;
-			if (definition.style.display === 'none') {
-				  definition.style.display = 'block';
-          synonymsTitle.style.display = 'block';
-			} else {
-				  definition.style.display = 'none';
-          synonymsTitle.style.display = 'none';
-			}
-		}
-        
-        function toggleSynonyms(event) {
-            const synonymsList = event.target.nextElementSibling;
-            if (synonymsList.style.display === 'none') {
-                synonymsList.style.display = 'block';
-            } else {
-                synonymsList.style.display = 'none';
-            }
-        }
+ <script>
+  function toggleDefinition(event) {
+      const definition = event.target.nextElementSibling;
+      const pronunciation = definition.nextElementSibling;
+      const synonymsTitle = pronunciation.nextElementSibling;
+      const synonymsList = synonymsTitle.nextElementSibling;
+      const antonymsTitle = synonymsList.nextElementSibling;
+      const antonymsList = antonymsTitle.nextElementSibling;
+  
+      if (event.target.className === 'word') {
+          definition.style.display = definition.style.display === 'none' ? 'block' : 'none';
+          pronunciation.style.display = pronunciation.style.display === 'none' ? 'block' : 'none';
+          synonymsTitle.style.display = synonymsTitle.style.display === 'none' ? 'block' : 'none';
+          antonymsTitle.style.display = antonymsTitle.style.display === 'none' ? 'block' : 'none';
+      }
+  }
 
-		
-		function displayWord(word, definition, synonyms) {
-			const wordDiv = document.createElement('div');
-			wordDiv.className = 'word';
-			wordDiv.textContent = word;
-			wordDiv.addEventListener('click', toggleDefinition);
-			
-			const definitionDiv = document.createElement('div');
-			definitionDiv.className = 'definition';
-			definitionDiv.textContent = definition;
-            
-            const synonymsTitleDiv = document.createElement('div');
-            synonymsTitleDiv.className = 'synonymsTitle';
-            synonymsTitleDiv.textContent = 'Synonyms';
-            synonymsTitleDiv.addEventListener('click', toggleSynonyms);
-            
-            const synonymsListDiv = document.createElement('div');
-            synonymsListDiv.className = 'synonymsList';
-            synonymsListDiv.textContent = synonyms;
-			
-			document.body.appendChild(wordDiv);
-			document.body.appendChild(definitionDiv);
-            document.body.appendChild(synonymsTitleDiv);
-            document.body.appendChild(synonymsListDiv);
+  function toggleSynonyms(event) {
+      const synonymsList = event.target.nextElementSibling;
+      synonymsList.style.display = synonymsList.style.display === 'none' ? 'block' : 'none';
+  }
 
-		}
-	</script>
-</head>
-<body>
+  function toggleAntonyms(event) {
+      const antonymsList = event.target.nextElementSibling;
+      antonymsList.style.display = antonymsList.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function displayWord(word, definition, pronunciation, synonyms, antonyms) {
+      const wordDiv = document.createElement('div');
+      wordDiv.className = 'word';
+      wordDiv.textContent = word;
+      wordDiv.addEventListener('click', toggleDefinition);
+
+      const definitionDiv = document.createElement('div');
+      definitionDiv.className = 'definition';
+      definitionDiv.textContent = definition;
+
+      const pronunciationDiv = document.createElement('div');
+      pronunciationDiv.className = 'pronunciation';
+      pronunciationDiv.textContent = 'Pronunciation: ' + pronunciation; // replace 'pronunciation' with actual pronunciation text
+
+      const synonymsTitleDiv = document.createElement('div');
+      synonymsTitleDiv.className = 'synonymsTitle';
+      synonymsTitleDiv.textContent = 'Synonyms';
+      synonymsTitleDiv.addEventListener('click', toggleSynonyms);
+
+
+      const synonymsListDiv = document.createElement('div');
+      synonymsListDiv.className = 'synonymsList';
+      synonymsListDiv.style.display = 'none'; // initially set to 'none'
+      synonymsListDiv.textContent = synonyms;    
+
+
+      const antonymsTitleDiv = document.createElement('div');
+      antonymsTitleDiv.className = 'antonymsTitle';
+      antonymsTitleDiv.textContent = 'Antonyms';
+      antonymsTitleDiv.addEventListener('click', toggleAntonyms);
+
+      const antonymsListDiv = document.createElement('div');
+      antonymsListDiv.className = 'antonymsList';
+      antonymsListDiv.style.display = 'none'; // initially set to 'none'
+      antonymsListDiv.textContent = antonyms;
+
+      document.body.appendChild(wordDiv);
+      document.body.appendChild(definitionDiv);
+      document.body.appendChild(pronunciationDiv);
+      document.body.appendChild(synonymsTitleDiv);
+      document.body.appendChild(synonymsListDiv);
+      document.body.appendChild(antonymsTitleDiv);
+      document.body.appendChild(antonymsListDiv);
+  }
+</script>
+
+
+
 	<h1></h1>
 <ul>
+    <li><a href="Dictionary.html">GAMES!!!li>
 		<li><a href="index.html">Dictionary</a></li>
 		<li><a href="Mathematics.html">Mathematics</a></li>
 		<li><a href="Science Research.html">Science Research</a></li>
-		<li><a href="Group-5.html">English</a></li>
+		<li><a href="Environmentalscience.html">Environmental science</a></li>
 	  </ul>
+	  </body>
+
+
+    
 	
 	<script>
-		displayWord('1. Cycle (noun)', 'A series of events that regularly repeat in the same order; (verb): to circulate or pass through a process repeatedly.', 'rotation, sequence, circle');
-		displayWord('2. Hydrological (adjective)', 'Relating to the study of water, particularly its movement and distribution.', 'water-related, aquatic');
-		displayWord('3. Biogeochemical (adjective)', ' Relating to the study of the chemical and biological processes that occur in the earths ecosystem.', 'ecological, environmental');
-		displayWord('4. Percolation (noun)', 'The process of a liquid slowly passing through a filter or porous material; (verb): to filter or seep through a porous substance.', 'filtration, seepage');
-		displayWord('5. Interception (noun)', 'The process of precipitation being caught and held on vegetation or other surfaces before it reaches the ground.', 'capture, retention');
-		displayWord('6. Phosphate (noun)', 'A chemical compound containing phosphorus, often used as a fertilizer.', 'phosphoric acid, phosphorus');
-		displayWord('7. Nitrate (noun)', 'A compound containing nitrogen and oxygen, often used as a fertilizer.', 'nitrogen oxide, nitric acid');
-		displayWord('8. Precipitation (noun)', 'The process of moisture in the atmosphere falling to the ground as rain, sleet, or snow.', 'rainfall, precipitation');
-		displayWord('9. Condensation (noun))', 'The process of a gas or vapor changing to a liquid state.', 'solidification, liquefaction');
-		displayWord('10. Nitrogen (noun)', 'A chemical element that makes up 78% of the earths atmosphere, and is a vital component for plant growth.', 'N, azote');
-		displayWord('11. Atmosphere (noun)', 'The layer of gases surrounding the earth, primarily composed of nitrogen and oxygen', 'air, climate');
-		displayWord('12. Hydrosphere (noun)', 'The component of the earths system that consists of water, including oceans, lakes, rivers, and groundwater.', 'aquatic sphere, water world');
+		displayWord('1. Cycle (noun)', 'A series of events that regularly repeat in the same order; (verb): to circulate or pass through a process repeatedly.', 'sahy-kuhl','rotation, sequence, circle','stagnation, standstill');
+		displayWord('2. Hydrological (adjective)', 'Relating to the study of water, particularly its movement and distribution. ','hahy-druh-loj-i-kuhl','water-related, aquatic','dry, arid');
+		displayWord('3. Biogeochemical (adjective)', 'Relating to the study of the chemical and biological processes that occur in the earth ecosystem.','bahy-oh-jee-oh-kem-i-kuhl','ecological, environmental', 'artificial, synthetic');
+		displayWord('4. Percolation (noun)', 'The process of a liquid slowly passing through a filter or porous material; (verb): to filter or seep through a porous substance. ','pur-kuh-ley-shuhn',' filtration, seepage','blockage, obstruction');
+		displayWord('5. Interception (noun)', 'The process of precipitation being caught and held on vegetation or other surfaces before it reaches the ground.',' in-tur-sep-shuhn','capture, retention','release, discharge');
+		displayWord('6. Phosphate (noun)', 'A chemical compound containing phosphorus, often used as a fertilizer.','fos-feyt','phosphoric acid, phosphorus','None');
+		displayWord('7. Nitrate (noun)', ' A compound containing nitrogen and oxygen, often used as a fertilizer.','nahy-treyt','nitrogen oxide, nitric acid','None');
+		displayWord('8. Precipitation (noun)', 'The process of moisture in the atmosphere falling to the ground as rain, sleet, or snow.','pri-sip-i-tey-shuhn','rainfall, precipitation','drought, dryness');
+		displayWord('9. Condensation (noun)', 'The process of a gas or vapor changing to a liquid state.', ' kon-den-sey-shuhn', 'solidification, liquefaction', 'vaporization, evaporation);
+		displayWord('10. Nitrogen (noun)', 'A chemical element that makes up 78% of the earth atmosphere, and is a vital component for plant growth.', 'nahy-truh-juh n', 'N, azote', 'N/A);
+		displayWord('11. Atmosphere (noun)', 'The layer of gases surrounding the earth, primarily composed of nitrogen and oxygen.', 'at-muh sfeer', 'air, climate', 'vacuum, space);
+		displayWord('12. Hydrosphere (noun)', 'The component of the earth system that consists of water, including oceans, lakes, rivers, and groundwater.', 'hahy-druh-sfeer', 'aquatic sphere, water world', 'land sphere, dry world);
+		displayWord('13. Hazards (noun)', 'A danger or risk that could potentially cause harm or damage.', 'haz-erdz', 'peril, threat', 'safety, security);
+		displayWord('14. Weight (noun)', 'The amount or quantity of heaviness or mass of an object or person.', 'wayt', 'mass, load, heaviness', 'lightness, featherweight);
+		displayWord('15. Transpiration (noun)', 'The process by which water evaporates from the surface of a plant and is released into the atmosphere through tiny pores in its leaves, flowers, and stems.', 'trans-puh-rey-shuhn', 'evaporation, exhalation, perspiration', 'absorption, retention);
 	</script>
-	
+  
+<div class="text">
+  <text><p><a href="Mathematics 2.html">next</a></p></text>
+</div>
+
+</a>
 </body>
 </html>
