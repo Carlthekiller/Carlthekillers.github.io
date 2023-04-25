@@ -3,6 +3,19 @@
 <head>
 	<title>English</title>
 	<style>
+.text {
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+            line-height: 5em;
+            padding: 1px;
+			border: 15%;
+			background-color: greenyellow;
+			width: 30%;
+			font-weight: bold;
+			font-size: 2em;
+			cursor: pointer;
+}
 
  body {
   background-color: #82E0AA;
@@ -15,33 +28,52 @@
   width: 150px;
 }
 
-        .word:hover {
-			border: none;
-  color: white;
-  background-color: green	;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-		}
+
+.text:hover {
+            border-radius: 10px;
+    color: white;
+    background-color: green	;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2em;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;          
+      }
+
+          .word:hover {
+            border-radius: 10px;
+    color: white;
+    background-color: green	;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2em;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;          
+      }
 
         .definition:hover {
          font-size: 1.5em;
 		}
 
 		.word {
-
+      border-radius: 5px;
+            line-height: 5em;
+            padding: 1px;
 			border: 15%;
 			background-color: white;
-			width: 10%;
+			width: 30%;
 			font-weight: bold;
-			font-size: 1.2em;
+			font-size: 2em;
 			cursor: pointer;
 		        
+		    
+    
 		}
 		.definition {
 			display: none;
@@ -57,6 +89,24 @@
         .synonymsList {
             display: none;
             margin-left: 40px;
+            cursor: pointer;
+        }
+        .antonymsTitle {
+            display: none;
+            margin-left: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .antonymsList {
+            display: none;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+        .pronunciation {
+
+            border-radius: 10px;
+            display: none;
+            margin-left: 20px;
             cursor: pointer;
         }
 
@@ -93,80 +143,107 @@ ul {
   box-shadow: 0 0 5px 5px rgba(66, 104, 58, 0.8)
 }
 	</style>
-	<script>
-		function toggleDefinition(event) {
-			const definition = event.target.nextElementSibling;
-            const synonymsTitle = definition.nextElementSibling;
-			if (definition.style.display === 'none') {
-				  definition.style.display = 'block';
-          synonymsTitle.style.display = 'block';
-			} else {
-				  definition.style.display = 'none';
-          synonymsTitle.style.display = 'none';
-			}
-		}
-        
-        function toggleSynonyms(event) {
-            const synonymsList = event.target.nextElementSibling;
-            if (synonymsList.style.display === 'none') {
-                synonymsList.style.display = 'block';
-            } else {
-                synonymsList.style.display = 'none';
-            }
-        }
+ <script>
+  function toggleDefinition(event) {
+      const definition = event.target.nextElementSibling;
+      const pronunciation = definition.nextElementSibling;
+      const synonymsTitle = pronunciation.nextElementSibling;
+      const synonymsList = synonymsTitle.nextElementSibling;
+      const antonymsTitle = synonymsList.nextElementSibling;
+      const antonymsList = antonymsTitle.nextElementSibling;
+  
+      if (event.target.className === 'word') {
+          definition.style.display = definition.style.display === 'none' ? 'block' : 'none';
+          pronunciation.style.display = pronunciation.style.display === 'none' ? 'block' : 'none';
+          synonymsTitle.style.display = synonymsTitle.style.display === 'none' ? 'block' : 'none';
+          antonymsTitle.style.display = antonymsTitle.style.display === 'none' ? 'block' : 'none';
+      }
+  }
 
-		
-		function displayWord(word, definition, synonyms) {
-			const wordDiv = document.createElement('div');
-			wordDiv.className = 'word';
-			wordDiv.textContent = word;
-			wordDiv.addEventListener('click', toggleDefinition);
-			
-			const definitionDiv = document.createElement('div');
-			definitionDiv.className = 'definition';
-			definitionDiv.textContent = definition;
-            
-            const synonymsTitleDiv = document.createElement('div');
-            synonymsTitleDiv.className = 'synonymsTitle';
-            synonymsTitleDiv.textContent = 'Synonyms';
-            synonymsTitleDiv.addEventListener('click', toggleSynonyms);
-            
-            const synonymsListDiv = document.createElement('div');
-            synonymsListDiv.className = 'synonymsList';
-            synonymsListDiv.textContent = synonyms;
-			
-			document.body.appendChild(wordDiv);
-			document.body.appendChild(definitionDiv);
-            document.body.appendChild(synonymsTitleDiv);
-            document.body.appendChild(synonymsListDiv);
+  function toggleSynonyms(event) {
+      const synonymsList = event.target.nextElementSibling;
+      synonymsList.style.display = synonymsList.style.display === 'none' ? 'block' : 'none';
+  }
 
-		}
-	</script>
-</head>
-<body>
+  function toggleAntonyms(event) {
+      const antonymsList = event.target.nextElementSibling;
+      antonymsList.style.display = antonymsList.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function displayWord(word, definition, pronunciation, synonyms, antonyms) {
+      const wordDiv = document.createElement('div');
+      wordDiv.className = 'word';
+      wordDiv.textContent = word;
+      wordDiv.addEventListener('click', toggleDefinition);
+
+      const definitionDiv = document.createElement('div');
+      definitionDiv.className = 'definition';
+      definitionDiv.textContent = definition;
+
+      const pronunciationDiv = document.createElement('div');
+      pronunciationDiv.className = 'pronunciation';
+      pronunciationDiv.textContent = 'Pronunciation: ' + pronunciation; // replace 'pronunciation' with actual pronunciation text
+
+      const synonymsTitleDiv = document.createElement('div');
+      synonymsTitleDiv.className = 'synonymsTitle';
+      synonymsTitleDiv.textContent = 'Synonyms';
+      synonymsTitleDiv.addEventListener('click', toggleSynonyms);
+
+
+      const synonymsListDiv = document.createElement('div');
+      synonymsListDiv.className = 'synonymsList';
+      synonymsListDiv.style.display = 'none'; // initially set to 'none'
+      synonymsListDiv.textContent = synonyms;    
+
+
+      const antonymsTitleDiv = document.createElement('div');
+      antonymsTitleDiv.className = 'antonymsTitle';
+      antonymsTitleDiv.textContent = 'Antonyms';
+      antonymsTitleDiv.addEventListener('click', toggleAntonyms);
+
+      const antonymsListDiv = document.createElement('div');
+      antonymsListDiv.className = 'antonymsList';
+      antonymsListDiv.style.display = 'none'; // initially set to 'none'
+      antonymsListDiv.textContent = antonyms;
+
+      document.body.appendChild(wordDiv);
+      document.body.appendChild(definitionDiv);
+      document.body.appendChild(pronunciationDiv);
+      document.body.appendChild(synonymsTitleDiv);
+      document.body.appendChild(synonymsListDiv);
+      document.body.appendChild(antonymsTitleDiv);
+      document.body.appendChild(antonymsListDiv);
+  }
+</script>
+
+
+
 	<h1></h1>
 <ul>
-		<li><a href="index.html">Dictionary</a></li>
+    <li><a href="Dictionary.html">GAMES!!!li>
+		<li><a href="Dictionary.html">Dictionary</a></li>
 		<li><a href="Mathematics.html">Mathematics</a></li>
 		<li><a href="Science Research.html">Science Research</a></li>
 		<li><a href="Environmentalscience.html">Environmental science</a></li>
 	  </ul>
+	  </body>
 
+
+    
 	
 	<script>
-		displayWord('1. Belief (noun)', 'Something an individual considers as the truth.', 'point of view, perspective');
-		displayWord('2. Conviction (noun)', 'Firm belief on something that an individual is convinced of.', 'view, thought');
-		displayWord('3. Extemporaneously (adverb)', ' With little or no advance preparation.', 'impromptu, improvised');
-		displayWord('4. Impromptu (adjective)', 'Made or done without previous preparation.', 'unrehearsed, unprepared');
-		displayWord('5. Verbatim (adverb, adjective)', 'Adverb: In exactly the same words as were used originally. Adjective: Copied, quoted, or translated in exactly the same words as were used originally.', 'exactly, in every  detail');
-		displayWord('6. Manuscript (noun)', 'The word-for-word iteration of a written message.', 'text, script');
-		displayWord('7. Auxiliary (verb)', 'A helping element, typically a verb, that adds meaning to the basic meaning of the main verb in a clause.', 'None');
-		displayWord('8. Provoking (verb, adjective)', 'Giving rise to the specified reaction or emotion.', 'cause, promote');
-		displayWord('9. Stance (noun)', 'The position or bearing of the body while standing.', 'posture, pose');
-		displayWord('10. Multi-sensorial (Adjective)', 'The use of several senses.', 'involving more than one of the senses');
-		displayWord('11. Recount (verb)', 'To retell a series of events.', 'tell, narrate');
-		displayWord('12. Hypertext (noun)', 'Text which contains links to other texts.', 'None');
+		displayWord('1. Belief (noun)', 'Something an individual considers as the truth.', 'pro-nun-see-ay-shun', 'point of view, perspective', 'antonyms1, antonyms2');
+		displayWord('2. Conviction (noun)', 'Firm belief on something that an individual is convinced of.', 'pro-nun-see-ay-shun', 'view, thought', 'antonyms1, antonyms2');
+		displayWord('3. Extemporaneously (adverb)', ' With little or no advance preparation.', 'impromptu, improvised','antonyms1, antonyms2');
+		displayWord('4. Impromptu (adjective)', 'Made or done without previous preparation.', 'pro-nun-see-ay-shun', 'unrehearsed, unprepared', 'antonyms1, antonyms2');
+		displayWord('5. Verbatim (adverb, adjective)', 'Adverb: In exactly the same words as were used originally. Adjective: Copied, quoted, or translated in exactly the same words as were used originally.', 'pro-nun-see-ay-shun','exactly, in every  detail', 'antonyms1, antonyms2');
+		displayWord('6. Manuscript (noun)', 'The word-for-word iteration of a written message.', 'pro-nun-see-ay-shun', 'text, script', 'antonyms1, antonyms2');
 	</script>
-	<button class=".word">></button>
+  
+<div class="text">
+  <text><p><a href="english page2.html">next</a></p></text>
+</div>
+
+</a>
 </body>
 </html>
